@@ -1,6 +1,6 @@
 MySQL-CSV
 =========
-Quick and dirty script to output a MySQL table into CSV form.
+Quick and dirty Bash script to output a MySQL table into CSV.
 
 	mysql-csv <database> <table> [fields]
 
