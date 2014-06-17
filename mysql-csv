@@ -1,0 +1,20 @@
+#!/bin/bash
+# Export a MySQL database table into CSV format
+#
+# Usage: mysql-csv <database> <table> [fields]
+#
+# If fields is omitted '*' is assumed
+
+DATABASE="$1"
+TABLE="$2"
+FIELDS="$3"
+TMP=`mktemp -p /tmp -u mysql-csv.XXXXXX`
+	
+if [ -z "$FIELDS" ]; then
+	FIELDS="*"
+fi
+
+mysql "$DATABASE" -e "SELECT $FIELDS INTO OUTFILE '$TMP' FIELDS TERMINATED BY ',' ENCLOSED BY '\"' ESCAPED BY '\\\\' LINES TERMINATED BY '\n' FROM $TABLE"
+
+cat "$TMP"
+sudo rm "$TMP"
