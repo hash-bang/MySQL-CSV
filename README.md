@@ -25,3 +25,7 @@ Output all users in the users table with all fields:
 Output only user ids and email addresses:
 
 	mysql-csv mydb users 'userid, email'
+
+Output user table as above with auth info:
+
+	mysql-csv mydb users 'userid, email' -umyUser -p
